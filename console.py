@@ -5,11 +5,13 @@ import re
 from shlex import split
 import models
 from models.base_model import BaseModel
+from models.user import User
 
 
-""" global contant """
+""" global constant """
 CLASSES = [
-    "BaseModel"
+    "BaseModel",
+    "User"
 ]
 
 
@@ -121,7 +123,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
             else:
                 print([str(obj) for obj in objects
-                    if li_arg[0] in str(obj)])
+                      if li_arg[0] in str(obj)])
 
     def do_destroy(self, argv):
         """Deletes an instance based on the class name and id"""
@@ -161,6 +163,7 @@ class HBNBCommand(cmd.Cmd):
                     print("** no instance found **")
 
             self.storage.save()
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
