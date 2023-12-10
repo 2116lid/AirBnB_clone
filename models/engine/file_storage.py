@@ -5,6 +5,12 @@
 import json
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
 
 
 class FileStorage:
@@ -35,7 +41,8 @@ class FileStorage:
             json.dump(dic_storage, f)
 
     def reload(self):
-        """deserializes the JSON file to __objects (only if the JSON file (__file_path) exists
+        """deserializes the JSON file to __objects
+        (only if the JSON file (__file_path) exists
         """
 
         try:
