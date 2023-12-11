@@ -61,5 +61,3 @@ class FileStorage:
                 for key, value in new_dict.items():
                     base = FileStorage.CLASSES1[value["__class__"]](**value)
                     FileStorage.__objects[key] = base
-        except FileNotFoundError:
-            pass
