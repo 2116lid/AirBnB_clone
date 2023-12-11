@@ -133,7 +133,7 @@ class TestStorageMethods(unittest.TestCase):
             models.storage.save(None)
 
     def test_reload_method_func(self):
-        """Tests the reload method... Quite tricky!"""
+        """Tests for the reload method"""
         dummy_bm = BaseModel()
         dummy_user = User()
         dummy_state = State()
