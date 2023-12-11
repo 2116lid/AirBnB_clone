@@ -20,6 +20,16 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
+    CLASSES1 = {
+            "BaseModel": BaseModel,
+        "User": User,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Place": Place,
+        "Review": Review
+    }
+
     def all(self):
         """ returns the dictionary __objects """
 
@@ -45,8 +55,11 @@ class FileStorage:
         """
 
         try:
-            with open(self.__file_path, "r", encoding="utf-8") as f:
-                for obj in json.load(f).values():
-                    self.new(eval(obj["__class__"])(**obj))
+            if os.path.exists(FileStorage.__file_path):
+            with open(FileStorage.__file_path, "r", encoding="UTF-8") as f:
+                new_dict = json.load(f)
+                for key, value in new_dict.items():
+                    base = FileStorage.CLASSES1[value["__class__"]](**value)
+                    FileStorage.__objects[key] = base
         except FileNotFoundError:
             pass
