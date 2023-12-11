@@ -54,10 +54,9 @@ class FileStorage:
         (only if the JSON file (__file_path) exists
         """
 
-        try:
-            if os.path.exists(FileStorage.__file_path):
+        if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r", encoding="UTF-8") as f:
                 new_dict = json.load(f)
                 for key, value in new_dict.items():
-                    base = FileStorage.CLASSES1[value["__class__"]](**value)
+                    base = FileStorage.classes[value["__class__"]](**value)
                     FileStorage.__objects[key] = base
